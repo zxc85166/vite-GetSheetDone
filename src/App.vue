@@ -3,42 +3,59 @@
   <p v-for="item in list" :key="item.name">
     {{ item.name }} -- {{ item.image }}
   </p>
-  <el-button
-    @mouseenter="showimg0 = !showimg0"
-    @mouseleave="showimg0 = !showimg0"
-    type="primary"
-    >主要按钮</el-button
-  >
-  <el-button
-    @mouseenter="showimg1 = !showimg1"
-    @mouseleave="showimg1 = !showimg1"
-    type="sucess"
-    >主要按钮</el-button
-  >
-  <el-button
-    @mouseenter="showimg2 = !showimg2"
-    @mouseleave="showimg2 = !showimg2"
-    type="info"
-    >主要按钮</el-button
-  >
-  <el-button
-    @mouseenter="showimg3 = !showimg3"
-    @mouseleave="showimg3 = !showimg3"
-    type="warning"
-    >主要按钮</el-button
-  >
-  <el-button
-    @mouseenter="showimg4 = !showimg4"
-    @mouseleave="showimg4 = !showimg4"
-    type="danger"
-    >主要按钮</el-button
-  >
-  <div class="picture">
-    <img v-show="showimg0" :src="picture0" />
-    <img v-show="showimg1" :src="picture1" />
-    <img v-show="showimg2" :src="picture2" />
-    <img v-show="showimg3" :src="picture3" />
-    <img v-show="showimg4" :src="picture4" />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="p-1">
+          <el-button
+            @mouseenter="showimg0 = !showimg0"
+            @mouseleave="showimg0 = !showimg0"
+            type="primary"
+            >大廳</el-button
+          >
+        </div>
+        <div class="p-1">
+          <el-button
+            @mouseenter="showimg1 = !showimg1"
+            @mouseleave="showimg1 = !showimg1"
+            type="sucess"
+            >健檢大樓</el-button
+          >
+        </div>
+        <div class="p-1">
+          <el-button
+            @mouseenter="showimg2 = !showimg2"
+            @mouseleave="showimg2 = !showimg2"
+            type="info"
+            >家庭醫學科</el-button
+          >
+        </div>
+        <div class="p-1">
+          <el-button
+            @mouseenter="showimg3 = !showimg3"
+            @mouseleave="showimg3 = !showimg3"
+            type="warning"
+            >眼科</el-button
+          >
+        </div>
+        <div class="p-1">
+          <el-button
+            @mouseenter="showimg4 = !showimg4"
+            @mouseleave="showimg4 = !showimg4"
+            type="danger"
+            >小兒科</el-button
+          >
+        </div>
+      </div>
+      <div class="d-flex col-sm-9 hosmap">
+        <img v-show="showimg0" :src="picture0" />
+        <img v-show="showimg1" :src="picture1" />
+        <img v-show="showimg2" :src="picture2" />
+        <img v-show="showimg3" :src="picture3" />
+        <img v-show="showimg4" :src="picture4" />
+      </div>
+    </div>
   </div>
   <div class="pictures">
     <img v-for="item in list" :key="item.name" :src="item.image" />
@@ -97,12 +114,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.picture {
-  display: flex;
+.hosmap {
   padding-top: 20px;
-  width: 50%;
   height: 300px;
-  margin: 0 auto;
 }
 .pictures {
   display: flex;
