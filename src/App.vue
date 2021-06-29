@@ -1,109 +1,18 @@
-<template>
-  <h1>Call API</h1>
-  <p v-for="item in list" :key="item.name">
-    {{ item.name }} -- {{ item.image }}
-  </p>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="p-1">
-          <el-button
-            @mouseenter="showimg0 = !showimg0"
-            @mouseleave="showimg0 = !showimg0"
-            type="primary"
-            >大廳</el-button
-          >
-        </div>
-        <div class="p-1">
-          <el-button
-            @mouseenter="showimg1 = !showimg1"
-            @mouseleave="showimg1 = !showimg1"
-            type="sucess"
-            >健檢大樓</el-button
-          >
-        </div>
-        <div class="p-1">
-          <el-button
-            @mouseenter="showimg2 = !showimg2"
-            @mouseleave="showimg2 = !showimg2"
-            type="info"
-            >家庭醫學科</el-button
-          >
-        </div>
-        <div class="p-1">
-          <el-button
-            @mouseenter="showimg3 = !showimg3"
-            @mouseleave="showimg3 = !showimg3"
-            type="warning"
-            >眼科</el-button
-          >
-        </div>
-        <div class="p-1">
-          <el-button
-            @mouseenter="showimg4 = !showimg4"
-            @mouseleave="showimg4 = !showimg4"
-            type="danger"
-            >小兒科</el-button
-          >
-        </div>
-      </div>
-      <div class="d-flex col-sm-9 hosmap">
-        <img v-show="showimg0" :src="picture0" />
-        <img v-show="showimg1" :src="picture1" />
-        <img v-show="showimg2" :src="picture2" />
-        <img v-show="showimg3" :src="picture3" />
-        <img v-show="showimg4" :src="picture4" />
-      </div>
-    </div>
-  </div>
-  <div class="pictures">
-    <img v-for="item in list" :key="item.name" :src="item.image" />
-  </div>
-</template>
-
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
-import GetSheetDone from "get-sheet-done";
-
+import Header from "@/components/Header.vue";
 export default {
-  // components: { HelloWorld },
-  name: "App",
-  data() {
-    return {
-      list: [],
-      picture0: "",
-      picture1: "",
-      picture2: "",
-      picture3: "",
-      picture4: "",
-      // 開關
-      showimg0: false,
-      showimg1: false,
-      showimg2: false,
-      showimg3: false,
-      showimg4: false,
-    };
+  components: {
+    Header,
   },
-  async mounted() {
-    let result = await GetSheetDone.labeledCols(
-      "1hmSpYoYMZCpa80Gatm0CwYtuPcCtnaheahyps63-tqk"
-    );
-    console.log(result.data);
-    this.list = result.data;
-    this.picture0 = result.data[0]["image"];
-    this.picture1 = result.data[1]["image"];
-    this.picture2 = result.data[2]["image"];
-    this.picture3 = result.data[3]["image"];
-    this.picture4 = result.data[4]["image"];
-  },
-  methods: {
-    toggleStyle: function () {
-      this.isActive = !this.isActive;
-    },
-  },
+  setup() {},
 };
 </script>
+<template>
+  <div id="app">
+    <Header />
+    <router-view />
+  </div>
+</template>
 
 <style>
 #app {
@@ -112,16 +21,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
-.hosmap {
-  padding-top: 20px;
-  height: 300px;
-}
-.pictures {
-  display: flex;
-  padding-top: 20px;
-  width: 500px;
-  height: 200px;
 }
 </style>
