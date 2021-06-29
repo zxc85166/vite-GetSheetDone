@@ -5,7 +5,11 @@ export default {
       components: {},
     };
   },
-  methods: {},
+  methods: {
+    order() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 <template>
