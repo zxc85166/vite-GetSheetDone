@@ -16,9 +16,10 @@ export default {
     });
     onBeforeMount(() => {
       axios
-        .get("https://run.mocky.io/v3/e53744cf-7821-4e6f-adbb-43a069931840")
+        .get("http://localhost:25020/GetItems")
         .then((response) => {
           state.selectData = response.data;
+          console.log(response.data);
         })
         .catch(function (response) {
           console.log(response);
@@ -37,12 +38,12 @@ export default {
       src="https://spreadsheets.google.com/tq?tqx=out:html&tq=&key=1hmSpYoYMZCpa80Gatm0CwYtuPcCtnaheahyps63-tqk&gid=0"
       style="width: 600px; height: 500px"
     ></iframe>
-    <loading
+    <!-- <loading
       v-model:active="isLoading"
       :can-cancel="true"
       :on-cancel="onCancel"
       :is-full-page="fullPage"
-    />
+    /> -->
     <h1>{{ "Please select the item you like below" }}</h1>
     <DropdownMenu :items="state.selectData.system"></DropdownMenu>
     <DropdownMenu :items="state.selectData.provider"></DropdownMenu>

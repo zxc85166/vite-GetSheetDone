@@ -30,6 +30,9 @@ export default {
               <router-link class="mx-3" to="/page1">另一頁</router-link>
             </li>
             <li>
+              <router-link class="mx-3" to="/page2">打本地asp後端</router-link>
+            </li>
+            <li>
               <a
                 href="https://docs.google.com/spreadsheets/d/1hmSpYoYMZCpa80Gatm0CwYtuPcCtnaheahyps63-tqk/edit#gid=0"
                 target="_blank"

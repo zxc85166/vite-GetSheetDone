@@ -1,5 +1,5 @@
 <script>
-import GetSheetDone from "get-sheet-done";
+import axios from "axios";
 export default {
   component: {},
   data() {
@@ -18,45 +18,69 @@ export default {
       showimg4: false,
     };
   },
-  async beforeMount() {
-    let result = await GetSheetDone.labeledCols(
-      "1hmSpYoYMZCpa80Gatm0CwYtuPcCtnaheahyps63-tqk"
-    );
-    console.log(result.data);
-    this.list = result.data;
-    this.picture0 = result.data[0]["image"];
-    this.picture1 = result.data[1]["image"];
-    this.picture2 = result.data[2]["image"];
-    this.picture3 = result.data[3]["image"];
-    this.picture4 = result.data[4]["image"];
+  beforeMount() {
+    axios
+      .get("http://localhost:25020/GetItems")
+      .then((response) => {
+        console.log(response.data);
+        this.list = response.data;
+        this.picture0 = response.data[0]["image"];
+        this.picture1 = response.data[1]["image"];
+        this.picture2 = response.data[2]["image"];
+        this.picture3 = response.data[3]["image"];
+        this.picture4 = response.data[4]["image"];
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
   },
   methods: {
     toggleStyle: function () {
-      this.showimg0 = !this.showimg0;
+      this.isActive = !this.isActive;
+    },
+    POSTme() {
+      axios
+        .post("http://localhost:25020/PostItem", {
+          ItemCode: "I0010",
+          ItemName: "全端班測試",
+          Price: 5000,
+          Image:
+            "https://pbs.twimg.com/media/E2HnAtVUYAEIoDm?format=png&name=small",
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    deleteme() {
+      axios
+        .delete("http://localhost:25020/DeleteItem?ItemID=I0010", {})
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
   },
 };
 </script>
 <template>
-  <div id="Home">
-    <div id="con">123 456</div>
-
+  <div id="page2">
+    <h1>POST測試</h1>
+    <el-button @click="POSTme" type="warning">發送POST</el-button>
+    <h1>delete測試</h1>
+    <el-button @click="deleteme" type="warning">發送delete</el-button>
     <h1>Call API</h1>
-    <p v-for="item in list" :key="item.name">
-      {{ item.name }} -- {{ item.image }}
+    <p v-for="item in list" :key="item.itemName">
+      {{ item.itemName }} -- {{ item.image }}
     </p>
+
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
-          <div class="p-1" v-for="item in list" :key="item.no">
-            <el-button
-              type="primary"
-              @mouseenter="`showimgitem.${item.index} = !showimg${item.index}`"
-              @mouseleave="`showimgitem.${item.index} = !showimg${item.index}`"
-              >{{ item.name }}
-            </el-button>
-          </div>
-
           <div class="p-1">
             <el-button
               @mouseenter="showimg0 = !showimg0"
@@ -108,7 +132,7 @@ export default {
       </div>
     </div>
     <div class="pictures">
-      <img v-for="item in list" :key="item.name" :src="item.image" />
+      <img v-for="item in list" :key="item.itemName" :src="item.image" />
     </div>
   </div>
 </template>
