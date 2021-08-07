@@ -39,24 +39,13 @@ export default {
 </script>
 <template>
   <div id="Home">
-    <div id="con">123 456</div>
-
-    <h1>Call API</h1>
+    <h1>串接google sheet</h1>
     <p v-for="item in list" :key="item.name">
       {{ item.name }} -- {{ item.image }}
     </p>
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
-          <div class="p-1" v-for="item in list" :key="item.no">
-            <el-button
-              type="primary"
-              @mouseenter="`showimgitem.${item.index} = !showimg${item.index}`"
-              @mouseleave="`showimgitem.${item.index} = !showimg${item.index}`"
-              >{{ item.name }}
-            </el-button>
-          </div>
-
           <div class="p-1">
             <el-button
               @mouseenter="showimg0 = !showimg0"
