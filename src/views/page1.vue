@@ -38,15 +38,6 @@ export default {
       src="https://spreadsheets.google.com/tq?tqx=out:html&tq=&key=1hmSpYoYMZCpa80Gatm0CwYtuPcCtnaheahyps63-tqk&gid=0"
       style="width: 600px; height: 500px"
     ></iframe>
-    <!-- <loading
-      v-model:active="isLoading"
-      :can-cancel="true"
-      :on-cancel="onCancel"
-      :is-full-page="fullPage"
-    /> -->
-    <h1>{{ "Please select the item you like below" }}</h1>
-    <DropdownMenu :items="state.selectData.system"></DropdownMenu>
-    <DropdownMenu :items="state.selectData.provider"></DropdownMenu>
   </div>
 </template>
 
